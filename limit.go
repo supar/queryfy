@@ -5,7 +5,7 @@ import (
 	"sync"
 )
 
-// limiter represents gracefull connection limitation with response.
+// limiter represents graceful connection limitation with response.
 // To control connections more aggressive http.Connection should be wrapped.
 type limiter struct {
 	mu  sync.Mutex
