@@ -14,7 +14,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestHeavyTimeoutDisclosure_do(t *testing.T) {
+func TestHeavyTimeoutCollection_do(t *testing.T) {
 	var cnt int32
 	// heavy handler
 	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
@@ -43,7 +43,7 @@ func TestHeavyTimeoutDisclosure_do(t *testing.T) {
 	}
 
 	ctx := context.Background()
-	ds := NewDisclosure(data, 4)
+	ds := NewCollection(data, 4)
 	ds.Walk(ctx)
 
 	if int(cnt) == len(data) {
