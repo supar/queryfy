@@ -11,9 +11,6 @@ import (
 )
 
 type Collection struct {
-	// http Client (in case any transport optimization)
-	cc *http.Client
-
 	// any error raised in progress
 	me sync.Mutex
 	er error
@@ -38,8 +35,6 @@ func NewCollection(data []string, qln int) *Collection {
 	}
 
 	ds := &Collection{
-		cc: http.DefaultClient,
-
 		resp: make(ResponseData, len(data)),
 		urls: data,
 
@@ -96,7 +91,7 @@ func (d *Collection) do(pctx context.Context, idx int) {
 			}
 
 			return nil
-		}(d.cc.Do(req))
+		}(http.DefaultClient.Do(req))
 	}()
 
 	select {
